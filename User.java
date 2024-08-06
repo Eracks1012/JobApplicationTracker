@@ -18,15 +18,12 @@ public class User {
 
     // Methods
     public void register() {
-        // Implementation here
     }
 
     public void login() {
-        // Implementation here
     }
 
     public void updateProfile(String newDetails) {
-        // Implementation here
     }
 
     public List<JobApplication> viewDashboard() {
