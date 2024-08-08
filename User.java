@@ -18,15 +18,35 @@ public class User {
 
     // Methods
     public void register() {
+        System.out.println("User registered successfully.");
     }
 
-    public void login() {
+    public boolean login(String username, String password) {
+        if (this.username.equals(username) && this.password.equals(password)) {
+            System.out.println("Login successful.");
+            return true;
+        } else {
+            System.out.println("Login failed. Invalid credentials.");
+            return false;
+        }
     }
 
     public void updateProfile(String newDetails) {
+        this.profileDetails = newDetails;
+        System.out.println("Profile updated successfully.");
     }
 
     public List<JobApplication> viewDashboard() {
         return dashboard;
+    }
+
+    public void addJobApplication(JobApplication application) {
+        dashboard.add(application);
+        System.out.println("Job application added successfully.");
+    }
+
+    public void removeJobApplication(int applicationID) {
+        dashboard.removeIf(app -> app.getApplicationID() == applicationID);
+        System.out.println("Job application removed successfully.");
     }
 }
