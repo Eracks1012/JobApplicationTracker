@@ -1,52 +1,48 @@
+import java.util.List;
+import java.util.ArrayList;
+
 public class User {
-    private int userID;
     private String username;
     private String password;
-    private String email;
-    private String profileDetails;
-    private List<JobApplication> dashboard;
+    private List<JobApplication> jobApplications; 
 
     // Constructor
-    public User(int userID, String username, String password, String email, String profileDetails) {
-        this.userID = userID;
+    public User(String username, String password) {
         this.username = username;
         this.password = password;
-        this.email = email;
-        this.profileDetails = profileDetails;
-        this.dashboard = new ArrayList<>();
+        this.jobApplications = new ArrayList<>(); 
     }
 
-    // Methods
-    public void register() {
-        System.out.println("User registered successfully.");
+    // Getters and Setters
+    public String getUsername() {
+        return username;
     }
 
-    public boolean login(String username, String password) {
-        if (this.username.equals(username) && this.password.equals(password)) {
-            System.out.println("Login successful.");
-            return true;
-        } else {
-            System.out.println("Login failed. Invalid credentials.");
-            return false;
-        }
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    public void updateProfile(String newDetails) {
-        this.profileDetails = newDetails;
-        System.out.println("Profile updated successfully.");
+    public String getPassword() {
+        return password;
     }
 
-    public List<JobApplication> viewDashboard() {
-        return dashboard;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    public void addJobApplication(JobApplication application) {
-        dashboard.add(application);
-        System.out.println("Job application added successfully.");
+    public List<JobApplication> getJobApplications() { 
+        return jobApplications;
     }
 
-    public void removeJobApplication(int applicationID) {
-        dashboard.removeIf(app -> app.getApplicationID() == applicationID);
-        System.out.println("Job application removed successfully.");
+    public void addJobApplication(JobApplication jobApplication) { 
+        this.jobApplications.add(jobApplication);
+    }
+
+    @Override
+    public String toString() {
+        return "Username: " + username + "\n" +
+               "Password: " + password + "\n" +
+               "Job Applications: " + jobApplications.size() + " applications";
     }
 }
+
