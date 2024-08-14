@@ -1,92 +1,108 @@
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Date;
 
-public class Application{
-    private int applicationID;
+public class JobApplication {
     private String companyName;
     private String jobTitle;
-    private String dateOfApplication;
+    private Date applicationDate;
     private String jobDescription;
     private String applicationStatus;
     private String contactInformation;
+    private Date reminderDate;  
 
     // Constructor
-    public Application(int applicationID, String companyName, String jobTitle, String dateOfApplication, String jobDescription, String applicationStatus, String contactInformation) {
-        this.applicationID = applicationID;
+    public JobApplication(String companyName, String jobTitle, Date applicationDate, 
+                          String jobDescription, String applicationStatus, String contactInformation) {
         this.companyName = companyName;
         this.jobTitle = jobTitle;
-        this.dateOfApplication = dateOfApplication;
+        this.applicationDate = applicationDate;
         this.jobDescription = jobDescription;
         this.applicationStatus = applicationStatus;
         this.contactInformation = contactInformation;
+        this.reminderDate = null;  
     }
 
-    // Methods
-    public void addApplication() {
-        System.out.println("Application added: " + getApplicationDetails());
-    }
-
-    public void updateStatus(String newStatus){
-        this.applicationStatus = newStatus;
-        System.out.println("Application status updated to: " + newStatus);
-    }
-
-    public void setReminder(Reminder reminder) {
-        reminders.add(reminder);
-        System.out.println("Reminder set for application: " + getApplicationDetails());
-    }
-
-    public String getApplicationDetails() {
-        return companyName + " - " + jobTitle;
-    }
-
-    //getters and setters
-    public int getApplicationID() {
-        return applicationID;
-    }
-
+    // Getters and Setters
     public String getCompanyName() {
         return companyName;
+    }
+
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
     }
 
     public String getJobTitle() {
         return jobTitle;
     }
 
-    public String getDateOfApplication() {
-        return dateOfApplication;
+    public void setJobTitle(String jobTitle) {
+        this.jobTitle = jobTitle;
+    }
+
+    public Date getApplicationDate() {
+        return applicationDate;
+    }
+
+    public void setApplicationDate(Date applicationDate) {
+        this.applicationDate = applicationDate;
     }
 
     public String getJobDescription() {
         return jobDescription;
     }
 
+    public void setJobDescription(String jobDescription) {
+        this.jobDescription = jobDescription;
+    }
+
     public String getApplicationStatus() {
         return applicationStatus;
+    }
+
+    public void setApplicationStatus(String applicationStatus) {
+        this.applicationStatus = applicationStatus;
     }
 
     public String getContactInformation() {
         return contactInformation;
     }
 
-    // Setters for updating private fields
-    public void setCompanyName(String companyName) {
-        this.companyName = companyName;
-    }
-
-    public void setJobTitle(String jobTitle) {
-        this.jobTitle = jobTitle;
-    }
-
-    public void setDateOfApplication(String dateOfApplication) {
-        this.dateOfApplication = dateOfApplication;
-    }
-
-    public void setJobDescription(String jobDescription) {
-        this.jobDescription = jobDescription;
-    }
-
     public void setContactInformation(String contactInformation) {
         this.contactInformation = contactInformation;
+    }
+
+    public Date getReminderDate() {
+        return reminderDate;
+    }
+
+    public void setReminderDate(Date reminderDate) {
+        this.reminderDate = reminderDate;
+    }
+
+    // Visual representation of application status
+    public String getStatusVisual() {
+        switch (applicationStatus.toLowerCase()) {
+            case "applied":
+                return "[Applied] ---------- Interview Scheduled ---------- Offer Received ---------- Rejected";
+            case "interview scheduled":
+                return "Applied ---------- [Interview Scheduled] ---------- Offer Received ---------- Rejected";
+            case "offer received":
+                return "Applied ---------- Interview Scheduled ---------- [Offer Received] ---------- Rejected";
+            case "rejected":
+                return "Applied ---------- Interview Scheduled ---------- Offer Received ---------- [Rejected]";
+            default:
+                return "[Status Unknown]";
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "Company: " + companyName + "\n" +
+               "Job Title: " + jobTitle + "\n" +
+               "Application Date: " + applicationDate + "\n" +
+               "Description: " + jobDescription + "\n" +
+               "Status: " + applicationStatus + "\n" +
+               "Contact Info: " + contactInformation + "\n" +
+               "Reminder Date: " + (reminderDate != null ? reminderDate : "No reminder set") + "\n" +
+               "Progress: " + getStatusVisual();
     }
 }
